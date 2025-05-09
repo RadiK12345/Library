@@ -145,10 +145,17 @@ void Update()
 
 void Delete()
 {
+    
     int index;
     Console.WriteLine("Put number of the Book you want to delete:");
     index = Convert.ToInt32(Console.ReadLine());
-    books.RemoveAt(index - 1);
+    Book? book = books.FirstOrDefault(x => x.Id == index);
+    if (book == null)
+    {
+        Console.WriteLine("Book not found");
+        return;
+    }
+    books.Remove(book);
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
