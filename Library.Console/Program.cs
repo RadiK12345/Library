@@ -1,9 +1,12 @@
 ﻿using Library.Console;
 
 
-List<Book> books = new List<Book>();
+List<Book> books = BooksManger.Load();
 
 bool isContinue = true;
+
+
+
 
 while (isContinue)
 {
@@ -36,6 +39,8 @@ while (isContinue)
             break;
         default: break;
     }
+    
+    
 }
 
 void AddBook()
@@ -48,6 +53,13 @@ void AddBook()
 
     Console.WriteLine("Set Number of the Book: ");
     id = Convert.ToInt32(Console.ReadLine());
+    bool isBookExists = books.Any(book => book.Id == id);
+    if (isBookExists)
+    {
+        Console.WriteLine("Book already exists");
+        return;
+    }
+    
     Console.WriteLine("Set Name of the Book: ");
     title = Console.ReadLine();
     Console.WriteLine("Set Publication Year of the Book: ");
@@ -69,6 +81,8 @@ void AddBook()
     Book book = new Book
         { Id = id, Title = title, PublicationYear = publicationYear, Quantity = quantity, Authors = Authors };
     books.Add(book);
+    
+    BooksManger.Save(books);
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
@@ -89,6 +103,8 @@ void Show()
         Console.WriteLine("Quantity: " + book.Quantity);
         Console.WriteLine("---------------------------");
     }
+    
+    BooksManger.Save(books);
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
@@ -135,6 +151,8 @@ void Update()
     book.PublicationYear = publicationYear;
     book.Quantity = quantity;
     book.Authors = Authors;
+    
+    BooksManger.Save(books);
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
@@ -152,6 +170,8 @@ void Delete()
         return;
     }
     books.Remove(book);
+    
+    BooksManger.Save(books);
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
@@ -159,5 +179,6 @@ void Delete()
 
 void Exit()
 {
+    BooksManger.Save(books);
     isContinue = false;
 }
