@@ -47,8 +47,7 @@ void AddBook()
     List<Author> Authors;
 
     Console.WriteLine("Set Number of the Book: ");
-    var tmpId = Console.ReadLine();
-    id = Convert.ToInt32(tmpId);
+    id = Convert.ToInt32(Console.ReadLine());
     Console.WriteLine("Set Name of the Book: ");
     title = Console.ReadLine();
     Console.WriteLine("Set Publication Year of the Book: ");
@@ -58,9 +57,8 @@ void AddBook()
     Authors = new List<Author>();
 
     Console.WriteLine("Write names of Authors with ;");
-
-    string tmpName = Console.ReadLine();
-    var names = tmpName.Split(';');
+    
+    var names = Console.ReadLine().Split(';');
 
     foreach (var name in names)
     {
@@ -124,9 +122,8 @@ void Update()
     Authors = new List<Author>();
 
     Console.WriteLine("Write names of Authors with ;");
-
-    string tmpName = Console.ReadLine();
-    var names = tmpName.Split("; ");
+    
+    var names = Console.ReadLine().Split(";");
 
     foreach (var name in names)
     {
@@ -145,7 +142,6 @@ void Update()
 
 void Delete()
 {
-    
     int index;
     Console.WriteLine("Put number of the Book you want to delete:");
     index = Convert.ToInt32(Console.ReadLine());

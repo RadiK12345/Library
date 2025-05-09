@@ -6,7 +6,5 @@ public class Book
     public string Title {get; set;}
     public int PublicationYear {get; set;}
     public int Quantity {get; set;}
-    public List <Author> Authors;
-    
-    
+    public List <Author> Authors {get; set;}
 }
