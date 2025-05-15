@@ -1,11 +1,8 @@
 ﻿using Library.Console;
 
-
 List<Book> books = BooksManger.Load();
 
 bool isContinue = true;
-
-
 
 
 while (isContinue)
@@ -39,8 +36,6 @@ while (isContinue)
             break;
         default: break;
     }
-    
-    
 }
 
 void AddBook()
@@ -81,8 +76,6 @@ void AddBook()
     Book book = new Book
         { Id = id, Title = title, PublicationYear = publicationYear, Quantity = quantity, Authors = Authors };
     books.Add(book);
-    
-    BooksManger.Save(books);
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
@@ -103,8 +96,6 @@ void Show()
         Console.WriteLine("Quantity: " + book.Quantity);
         Console.WriteLine("---------------------------");
     }
-    
-    BooksManger.Save(books);
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
@@ -151,8 +142,6 @@ void Update()
     book.PublicationYear = publicationYear;
     book.Quantity = quantity;
     book.Authors = Authors;
-    
-    BooksManger.Save(books);
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
@@ -170,8 +159,6 @@ void Delete()
         return;
     }
     books.Remove(book);
-    
-    BooksManger.Save(books);
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
