@@ -1,11 +1,9 @@
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-
 namespace Library.Console;
 
 class BooksXmlManager : IBooksManager
 {
-    
     public void Save(List<Book> books)
     {
         XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Book>));

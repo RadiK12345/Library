@@ -1,10 +1,7 @@
 ﻿using Library.Console;
 
 bool isContinue = true;
-
-
 IBooksManager booksManager;
-
 
 Console.WriteLine("How do you want to save the file?");
 Console.WriteLine("1. Json");
@@ -23,10 +20,7 @@ switch (res)
         booksManager = new BooksJsonManager();
         break; 
 }
-
 List<Book> books = booksManager.Load();
-
-
 
 while (isContinue)
 {
