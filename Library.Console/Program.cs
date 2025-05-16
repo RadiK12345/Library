@@ -160,7 +160,7 @@ public class Program
         Console.WriteLine("Write names of Authors with ;");
 
         var names = Console.ReadLine();
-        var splitNames = names?.Split().ToList() ?? new List<string>();
+        var splitNames = names?.Split(';').ToList() ?? new List<string>();
 
         foreach (var name in splitNames)
         {

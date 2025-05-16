@@ -4,7 +4,7 @@ namespace Library.Console;
 
 internal class BooksXmlManager : IBooksManager
 {
-    private const string FileName = "file.json";
+    private const string FileName = "file.xml";
 
     public void Save(List<Book> books)
     {
