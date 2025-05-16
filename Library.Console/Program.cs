@@ -7,7 +7,7 @@ Console.WriteLine("How do you want to save the file?");
 Console.WriteLine("1. Json");
 Console.WriteLine("2. Xml");
 
-int res = int.Parse(Console.ReadLine());
+int res = int.Parse(Console.ReadLine() ?? string.Empty);
 switch (res)
 {
     case 1:
@@ -18,8 +18,9 @@ switch (res)
         break;
     default:
         booksManager = new BooksJsonManager();
-        break; 
+        break;
 }
+
 List<Book> books = booksManager.Load();
 
 while (isContinue)
@@ -58,10 +59,10 @@ while (isContinue)
 void AddBook()
 {
     int id;
-    string title;
+    string? title;
     int publicationYear;
     int quantity;
-    List<Author> Authors;
+    List<Author> authors;
 
     Console.WriteLine("Set Number of the Book: ");
     id = Convert.ToInt32(Console.ReadLine());
@@ -71,27 +72,29 @@ void AddBook()
         Console.WriteLine("Book already exists");
         return;
     }
-    
+
     Console.WriteLine("Set Name of the Book: ");
     title = Console.ReadLine();
     Console.WriteLine("Set Publication Year of the Book: ");
     publicationYear = Convert.ToInt32(Console.ReadLine());
     Console.WriteLine("Set Quantity of the Book: ");
     quantity = Convert.ToInt32(Console.ReadLine());
-    Authors = new List<Author>();
+    authors = new List<Author>();
 
     Console.WriteLine("Write names of Authors with ;");
-    
-    var names = Console.ReadLine().Split(';');
 
-    foreach (var name in names)
+    string? names;
+    names = Console.ReadLine() ?? string.Empty;
+    var split = names.Split(';');
+
+    foreach (var name in split)
     {
         Author author = new Author { Name = name };
-        Authors.Add(author);
+        authors.Add(author);
     }
 
     Book book = new Book
-        { Id = id, Title = title, PublicationYear = publicationYear, Quantity = quantity, Authors = Authors };
+        { Id = id, Title = title ?? string.Empty, PublicationYear = publicationYear, Quantity = quantity, Authors = authors };
     books.Add(book);
 
     Console.WriteLine("Press any key to continue");
@@ -118,13 +121,12 @@ void Show()
     Console.ReadLine();
 }
 
-
 void Update()
 {
-    string title;
+    string? title;
     int publicationYear;
     int quantity;
-    List<Author> Authors;
+    List<Author> authors;
 
     Console.WriteLine("Choose number of the Book you want to update:");
     int info = Convert.ToInt32(Console.ReadLine());
@@ -143,22 +145,23 @@ void Update()
     publicationYear = Convert.ToInt32(Console.ReadLine());
     Console.WriteLine("Set Quantity of the Book: ");
     quantity = Convert.ToInt32(Console.ReadLine());
-    Authors = new List<Author>();
+    authors = new List<Author>();
 
     Console.WriteLine("Write names of Authors with ;");
-    
-    var names = Console.ReadLine().Split(";");
 
-    foreach (var name in names)
+    var names = Console.ReadLine();
+    var splitNames = names?.Split().ToList() ?? new List<string>();
+
+    foreach (var name in splitNames)
     {
         Author author = new Author { Name = name };
-        Authors.Add(author);
+        authors.Add(author);
     }
 
-    book.Title = title;
+    book.Title = title ?? string.Empty;
     book.PublicationYear = publicationYear;
     book.Quantity = quantity;
-    book.Authors = Authors;
+    book.Authors = authors;
 
     Console.WriteLine("Press any key to continue");
     Console.ReadLine();
@@ -175,6 +178,7 @@ void Delete()
         Console.WriteLine("Book not found");
         return;
     }
+
     books.Remove(book);
 
     Console.WriteLine("Press any key to continue");

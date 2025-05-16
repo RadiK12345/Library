@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <NoWarn>CS8618;SA1600;SA1200;SA1633</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
