@@ -4,10 +4,11 @@ namespace Library.Console;
 
 class BooksXmlManager : IBooksManager
 {
+    private const string fileName = "file.json";
     public void Save(List<Book> books)
     {
         XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Book>));
-        using (FileStream fs = new FileStream("file.xml", FileMode.Create))
+        using (FileStream fs = new FileStream(fileName, FileMode.Create))
         {
             xmlSerializer.Serialize(fs, books);
         }
@@ -17,7 +18,7 @@ class BooksXmlManager : IBooksManager
     {
         XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Book>));
         
-        using (FileStream fs = new FileStream("file.xml", FileMode.Open))
+        using (FileStream fs = new FileStream(fileName, FileMode.Open))
         {
             if (fs.Length == 0)
             {

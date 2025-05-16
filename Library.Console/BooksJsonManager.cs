@@ -14,7 +14,7 @@ public class BooksJsonManager : IBooksManager
     {
         if (File.Exists(fileName))
         {
-            string json = File.ReadAllText("file.json");
+            string json = File.ReadAllText(fileName);
             var books = JsonSerializer.Deserialize<List<Book>>(json);
             return books;
         }
