@@ -2,14 +2,14 @@ namespace Library.Console;
 
 using System.Text.Json;
 
-public static class BooksManger
+public class BooksJsonManager : IBooksManager
 {
-    public static void Save(List<Book> books)
+    public void Save(List<Book> books)
     {
         File.WriteAllText("file.json", JsonSerializer.Serialize(books));
     }
 
-    public static List<Book> Load()
+    public List<Book> Load()
     {
         if (File.Exists("file.json"))
         {
