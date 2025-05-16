@@ -1,9 +1,9 @@
 ﻿using Library.Console;
 
-
-List<Book> books = new List<Book>();
+List<Book> books = BooksManger.Load();
 
 bool isContinue = true;
+
 
 while (isContinue)
 {
@@ -48,6 +48,13 @@ void AddBook()
 
     Console.WriteLine("Set Number of the Book: ");
     id = Convert.ToInt32(Console.ReadLine());
+    bool isBookExists = books.Any(book => book.Id == id);
+    if (isBookExists)
+    {
+        Console.WriteLine("Book already exists");
+        return;
+    }
+    
     Console.WriteLine("Set Name of the Book: ");
     title = Console.ReadLine();
     Console.WriteLine("Set Publication Year of the Book: ");
@@ -159,5 +166,6 @@ void Delete()
 
 void Exit()
 {
+    BooksManger.Save(books);
     isContinue = false;
 }
