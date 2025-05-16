@@ -1,9 +1,26 @@
 ﻿using Library.Console;
 
-List<Book> books = BooksManger.Load();
-
 bool isContinue = true;
+IBooksManager booksManager;
 
+Console.WriteLine("How do you want to save the file?");
+Console.WriteLine("1. Json");
+Console.WriteLine("2. Xml");
+
+int res = int.Parse(Console.ReadLine());
+switch (res)
+{
+    case 1:
+        booksManager = new BooksJsonManager();
+        break;
+    case 2:
+        booksManager = new BooksXmlManager();
+        break;
+    default:
+        booksManager = new BooksJsonManager();
+        break; 
+}
+List<Book> books = booksManager.Load();
 
 while (isContinue)
 {
@@ -166,6 +183,6 @@ void Delete()
 
 void Exit()
 {
-    BooksManger.Save(books);
+    booksManager.Save(books);
     isContinue = false;
 }
